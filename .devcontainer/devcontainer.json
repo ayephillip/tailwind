@@ -1,8 +1,15 @@
-// See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-	"name": "Untitled Node.js project",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
-  "remoteUser": "node"
-}
+	// see https://github.com/devcontainers/images/tree/main/src/typescript-node/history
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1.0.9-20-bookworm",
+	// create empty .env otherwise complains its missing
+	"initializeCommand": "touch .env",
+	// make .env file owned by container user (not root)
+	"onCreateCommand": "sudo chown node:node .env",
+	"runArgs": ["--env-file", ".env"],
+	"customizations": {
+	  "vscode": {
+		"extensions": ["esbenp.prettier-vscode"]
+	  }
+	}
+  }
+  
